@@ -1,5 +1,7 @@
 # daily_tracker
 
+A simple app to track several categories of daily and/or weekly activities
+
 ## Project setup
 ```
 npm install
