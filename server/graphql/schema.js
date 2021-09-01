@@ -16,10 +16,10 @@ const typeDefs = gql`
 
   type Mutation {
      addDate(date: Int): String
-     updatePushups(date: Int, pushups: any): String
-     updateSitups(date: Int, pushups: any): String
-     updateRun(date: Int, pushups: any): String
-     updateAlcohol(date: Int, pushups: any): String
+     updatePushups(date: Int, pushups: Int): String
+     updateSitups(date: Int, situps: Int): String
+     updateRun(date: Int, run: Boolean): String
+     updateAlcohol(date: Int, alcohol: Boolean): String
   }
 `;
 
