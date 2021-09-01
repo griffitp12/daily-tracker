@@ -1,5 +1,5 @@
 <template class="day-container">
-  <div v-if="!isFuture">
+  <div v-if="!isFuture" @click="emitClickedDate">
     <p v-if="date">{{ date }}</p>
   </div>
   <div v-else class="future">
@@ -16,7 +16,7 @@ export default defineComponent({
     date: String,
   },
 
-  setup(props) {
+  setup(props, context) {
     let isFuture = ref(false);
 
     const checkIfFuture = (): void => {
@@ -32,9 +32,13 @@ export default defineComponent({
       }
     };
 
+    const emitClickedDate = () => {
+      context.emit('update:clickedDate', props.date);
+    };
+
     onMounted(checkIfFuture);
 
-    return { isFuture };
+    return { isFuture, emitClickedDate };
   },
 });
 </script>

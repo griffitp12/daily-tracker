@@ -17,7 +17,7 @@
         <th><CalendarDay /></th>
         <th><CalendarDay /></th>
         <th><CalendarDay /></th>
-        <th><CalendarDay date=1 /></th>
+        <th><CalendarDay date=1 @update:clickedDate="clickedDateHandler"/></th>
         <th><CalendarDay date=2 /></th>
         <th><CalendarDay date=3 /></th>
         <th><CalendarDay date=4 /></th>
@@ -72,7 +72,10 @@ export default defineComponent({
     CalendarDay,
   },
   setup() {
-    return;
+    const clickedDateHandler = (date: string) => {
+      console.log(typeof date)
+    }
+    return {clickedDateHandler};
   },
 });
 </script>
