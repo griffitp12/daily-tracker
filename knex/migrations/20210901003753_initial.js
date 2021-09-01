@@ -1,4 +1,4 @@
-exports.up = function(knex) {
+export function up(knex) {
   return knex.schema.createTable('september', (table) => {
     table
       .integer('date')
@@ -7,12 +7,12 @@ exports.up = function(knex) {
       .primary();
     table.boolean('run');
     table.boolean('alcohol');
-    table.int('pushups');
-    table.int('situps');
+    table.integer('pushups');
+    table.integer('situps');
     table.text('name').notNullable();
   });
-};
+}
 
-exports.down = function(knex) {
+export function down(knex) {
   return knex.schema.dropTableIfExists('september');
-};
+}
