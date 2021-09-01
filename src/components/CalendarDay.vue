@@ -33,7 +33,7 @@ export default defineComponent({
     };
 
     const emitClickedDate = () => {
-      context.emit('update:clickedDate', props.date);
+      context.emit('emit:clickedDate', props.date);
     };
 
     onMounted(checkIfFuture);
