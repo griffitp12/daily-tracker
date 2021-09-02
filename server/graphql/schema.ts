@@ -2,7 +2,7 @@ import { gql } from 'apollo-server-express';
 
 const typeDefs = gql`
   type Date {
-    date: Int!
+    date: Int
     pushups: Int
     situps: Int
     run: Boolean
@@ -10,8 +10,8 @@ const typeDefs = gql`
   }
 
   type Query {
-    getAllInfo: [Date]
-    getInfoByDate(date: Int): Date
+    allInfo: [Date]
+    infoByDate(date: Int!): Date
   }
 
   type Mutation {

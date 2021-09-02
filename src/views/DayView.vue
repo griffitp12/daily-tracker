@@ -36,15 +36,21 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-import { accessStore } from '../store/store' 
-import calls from '../apicalls'
+import { accessStore } from '../store/store';
+import calls from '../apicalls';
 
 export default defineComponent({
   name: 'DayView',
   setup() {
-    const { selectedDate, isDayView } = accessStore()
+    const { selectedDate, isDayView } = accessStore();
 
-    calls.getDataByDate(selectedDate.value)
+    async function getDailyData() {
+      await calls.getDataByDateInefficiently(selectedDate.value)
+    }
+
+    const dataObj = getDailyData()
+
+    console.log(dataObj);
 
     let pushups = ref(0);
     let situps = ref(0);
@@ -52,7 +58,7 @@ export default defineComponent({
     let alcohol = ref(false);
 
     const buttonHandler = () => {
-      isDayView.value = false
+      isDayView.value = false;
     };
 
     const updateLog = (event: Event) => {
@@ -62,16 +68,24 @@ export default defineComponent({
         pushups: pushups.value,
         situps: situps.value,
         run: run.value,
-        alcohol: alcohol.value
-      }
-      calls.updateData(data)
+        alcohol: alcohol.value,
+      };
+      calls.updateData(data);
     };
 
     if (selectedDate) {
       calls.addDate(selectedDate.value);
     }
 
-    return { buttonHandler, updateLog, pushups, situps, run, alcohol, selectedDate };
+    return {
+      buttonHandler,
+      updateLog,
+      pushups,
+      situps,
+      run,
+      alcohol,
+      selectedDate,
+    };
   },
 });
 </script>

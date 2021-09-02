@@ -2,7 +2,7 @@ import db from '../knex/knex.js';
 
 const resolvers = {
   Query: {
-    getAllInfo: () => {
+    allInfo: () => {
       return db
         .select('*')
         .from('september')
@@ -11,7 +11,7 @@ const resolvers = {
         });
     },
 
-    getInfoByDate: (parent: never, args: any): Promise<any[]> => {
+    infoByDate: (parent: never, args: any): Promise<any[]> => {
       return db
         .select('*')
         .from('september')
@@ -31,7 +31,7 @@ const resolvers = {
         });
     },
 
-    updateData: (parent: never, args: any) => {
+    updateData: (parent: never, args: any): Promise<string> => {
       return db
         .select('*')
         .from('september')
@@ -43,7 +43,7 @@ const resolvers = {
           alcohol: args.alcohol,
         })
         .then(() => {
-          return `September ${args.date} data updated`
+          return `September ${args.date} data updated`;
         });
     },
   },

@@ -14,7 +14,7 @@ export default {
         },
       }).then((data) => {
         if (data.data.errors) {
-          console.log(data.data.errors);
+         return
         } else {
           console.log(data.data.data.addDate);
         }
@@ -43,7 +43,8 @@ export default {
     }
   },
 
-  getDataByDate: async function(date: number) {
+  // this isn't working. WHY???
+  /* getDataByDate: async function(date: number) {
     try {
       await axios({
         method: 'POST',
@@ -51,12 +52,43 @@ export default {
         data: {
           query: `
             {
-              getInfoByDate(date: ${date})
+              infoByDate(date: ${date}){
+                pushups
+                situps
+                run
+                alcohol
+              }
             }
           `,
         },
       }).then((data) => {
         console.log(data)
+      });
+    } catch (err) {
+      throw new Error(err)
+    }
+  }, */
+
+  getDataByDateInefficiently : async function(date: number): Promise<any> {
+    try {
+      await axios({
+        method: 'POST',
+        url: '/graphql',
+        data: {
+          query: `{
+            allInfo {
+              date
+              pushups
+              situps
+              alcohol
+              run
+            }
+          }
+          `,
+        },
+      }).then((data) => {
+        const filteredData = data.data.data.allInfo.filter((data: GraphQLDataObj) => data.date === date)
+        return filteredData[0]
       });
     } catch (err) {
       throw new Error(err)
