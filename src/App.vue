@@ -1,37 +1,25 @@
 <template>
   <div class="header"><p>This is the app</p></div>
-  <CalendarView v-if="!isDayView" @update:selectedDay="clickedDateHandler" />
-  <DayView
-    v-else
-    :selectedDate="selectedDate"
-    @update:isDayView="toggleIsDayView"
-  />
+  <CalendarView v-if="!isDayView" />
+  <DayView v-else />
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { defineComponent } from 'vue';
 import CalendarView from './views/CalendarView.vue';
-import DayView from './views/DayView.vue'
+import DayView from './views/DayView.vue';
+import { accessStore } from './store/store';
 
 export default defineComponent({
   name: 'App',
   components: {
-    CalendarView, DayView
+    CalendarView,
+    DayView,
   },
   setup() {
-    let isDayView = ref(false);
-    let selectedDate = ref(0);
+    const { isDayView } = accessStore();
 
-    const toggleIsDayView = () => {
-      isDayView.value = !isDayView.value;
-    };
-
-    const clickedDateHandler = (date: string) => {
-      selectedDate.value = parseInt(date);
-      toggleIsDayView();
-    };
-
-    return { isDayView, clickedDateHandler, selectedDate, toggleIsDayView };
+    return { isDayView };
   },
 });
 </script>

@@ -9,7 +9,6 @@ export function up(knex) {
     table.boolean('alcohol');
     table.integer('pushups');
     table.integer('situps');
-    table.text('name').notNullable();
   });
 }
 

@@ -8,8 +8,8 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "back": "nodemon ./server/index.js",
-    "back:node": "node ./server/index.js",
+    "back": "nodemon ./dist/server/index.js",
+    "back:node": "node ./dist/server/index.js",
     "makeMigration": "npx knex --knexfile ./knexfile.js migrate:make ",
     "migrate": "npx knex --knexfile ./knexfile.js migrate:latest"
   },

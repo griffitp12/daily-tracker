@@ -1,7 +1,7 @@
 import 'dotenv/config'
+import { Knex } from 'knex'
 
-export default {
-  development: {
+const devConfig: Knex.Config = {
     client: 'pg',
     connection: process.env.DATABASE_URL || {
       host: '127.0.0.1',
@@ -16,5 +16,6 @@ export default {
     seeds: {
       directory: './data',
     },
-  },
 };
+
+export default devConfig

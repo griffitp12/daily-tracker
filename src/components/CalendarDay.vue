@@ -1,5 +1,5 @@
 <template class="day-container">
-  <div v-if="!isFuture" @click="emitClickedDate">
+  <div v-if="!isFuture" @click="handleClickedDate">
     <p v-if="date">{{ date }}</p>
   </div>
   <div v-else class="future">
@@ -9,6 +9,7 @@
 
 <script lang="ts">
 import { defineComponent, ref, onMounted } from 'vue';
+import { accessStore } from '../store/store';
 
 export default defineComponent({
   name: 'CalendarDay',
@@ -16,8 +17,9 @@ export default defineComponent({
     date: String,
   },
 
-  setup(props, context) {
+  setup(props) {
     let isFuture = ref(false);
+    const { selectedDate, isDayView } = accessStore()
 
     const checkIfFuture = (): void => {
       if (!props.date) {
@@ -32,13 +34,16 @@ export default defineComponent({
       }
     };
 
-    const emitClickedDate = () => {
-      context.emit('emit:clickedDate', props.date);
+    const handleClickedDate = () => {
+      if (props.date) {
+        selectedDate.value = parseInt(props.date);
+        isDayView.value = true
+      }
     };
 
     onMounted(checkIfFuture);
 
-    return { isFuture, emitClickedDate };
+    return { isFuture, handleClickedDate };
   },
 });
 </script>

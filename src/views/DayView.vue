@@ -36,53 +36,42 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-import axios from 'axios';
+import { accessStore } from '../store/store' 
+import calls from '../apicalls'
 
 export default defineComponent({
   name: 'DayView',
-  props: {
-    selectedDate: Number,
-  },
-  setup(props, context) {
+  setup() {
+    const { selectedDate, isDayView } = accessStore()
+
+    calls.getDataByDate(selectedDate.value)
+
     let pushups = ref(0);
     let situps = ref(0);
     let run = ref(false);
     let alcohol = ref(false);
 
-    interface DataObj {
-      date: number;
-      pushups: number;
-      situps: number;
-      alcohol: boolean;
-      run: boolean;
-    }
-
     const buttonHandler = () => {
-      context.emit('update:isDayView');
+      isDayView.value = false
     };
+
     const updateLog = (event: Event) => {
       event.preventDefault();
-      alert("Today's log was updated!");
+      let data = {
+        date: selectedDate.value,
+        pushups: pushups.value,
+        situps: situps.value,
+        run: run.value,
+        alcohol: alcohol.value
+      }
+      calls.updateData(data)
     };
 
-    const addDate = async function(date: number) {
-      await axios({
-        method: 'POST',
-        url: '/graphql',
-        data: {
-          query: `
-          mutation{
-          addDate(date: ${date})
-          }`,
-        },
-      });
-    };
-
-    if (props.selectedDate) {
-      addDate(props.selectedDate);
+    if (selectedDate) {
+      calls.addDate(selectedDate.value);
     }
 
-    return { buttonHandler, updateLog, pushups, situps, run, alcohol };
+    return { buttonHandler, updateLog, pushups, situps, run, alcohol, selectedDate };
   },
 });
 </script>

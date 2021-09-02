@@ -18,7 +18,7 @@
         <th><CalendarDay /></th>
         <th><CalendarDay /></th>
         <th>
-          <CalendarDay date="1" @emit:clickedDate="clickedDateHandler" />
+          <CalendarDay date="1" />
         </th>
         <th><CalendarDay date="2" /></th>
         <th><CalendarDay date="3" /></th>
@@ -73,11 +73,8 @@ export default defineComponent({
   components: {
     CalendarDay,
   },
-  setup(_, context) {
-    const clickedDateHandler = (date: string) => {
-      context.emit('update:selectedDay', date);
-    };
-    return { clickedDateHandler };
+  setup() {
+    return;
   },
 });
 </script>

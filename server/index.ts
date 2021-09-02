@@ -5,9 +5,8 @@ import resolvers from './graphql/resolvers.js';
 import { ApolloServer } from 'apollo-server-express';
 import db from './knex/knex.js';
 
-
 const app = express();
-const port = process.env.EXPRESS_PORT || 8080;
+const port = process.env.EXPRESS_PORT || 3000;
 const server = new ApolloServer({ typeDefs, resolvers });
 
 
@@ -19,9 +18,8 @@ async function setupServer() {
 }
 
 
-
-console.log('setting up')
-setupServer()
+console.log('setting up');
+setupServer();
 
 app.listen(port, () => {
   console.log('App listening at port: ', port);
