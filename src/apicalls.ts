@@ -14,7 +14,7 @@ export default {
         },
       }).then((data) => {
         if (data.data.errors) {
-         return
+          return;
         } else {
           console.log(data.data.data.addDate);
         }
@@ -43,6 +43,28 @@ export default {
     }
   },
 
+  allInfo: async function(): Promise<GraphQLDataObj[]> {
+    return axios({
+      method: 'POST',
+      url: '/graphql',
+      data: {
+        query: `
+            {
+            allInfo {
+              date
+              pushups
+              situps
+              alcohol
+              run
+            }
+            }`,
+      },
+    }).then((data) => {
+      const allInfo = data.data.data.allInfo
+      return allInfo
+    });
+  },
+
   // this isn't working. WHY???
   /* getDataByDate: async function(date: number) {
     try {
@@ -69,13 +91,14 @@ export default {
     }
   }, */
 
-  getDataByDateInefficiently : async function(date: number): Promise<any> {
-    try {
-      await axios({
-        method: 'POST',
-        url: '/graphql',
-        data: {
-          query: `{
+  getDataByDateInefficiently: async function(
+    date: number
+  ): Promise<GraphQLDataObj> {
+    return axios({
+      method: 'POST',
+      url: '/graphql',
+      data: {
+        query: `{
             allInfo {
               date
               pushups
@@ -85,13 +108,12 @@ export default {
             }
           }
           `,
-        },
-      }).then((data) => {
-        const filteredData = data.data.data.allInfo.filter((data: GraphQLDataObj) => data.date === date)
-        return filteredData[0]
-      });
-    } catch (err) {
-      throw new Error(err)
-    }
-  }
+      },
+    }).then((data) => {
+      const filteredData: GraphQLDataObj[] = data.data.data.allInfo.filter(
+        (data: GraphQLDataObj) => data.date === date
+      );
+      return filteredData[0];
+    });
+  },
 };

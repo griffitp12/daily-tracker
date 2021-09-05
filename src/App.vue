@@ -1,25 +1,46 @@
 <template>
-  <div class="header"><p>This is the app</p></div>
-  <CalendarView v-if="!isDayView" />
-  <DayView v-else />
+  <div v-if="appLoading.value"></div>
+  <div v-else>
+    <Header />
+    <CalendarView v-if="!isDayView" />
+    <DayView v-else />
+  </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, ref, onMounted } from 'vue';
 import CalendarView from './views/CalendarView.vue';
 import DayView from './views/DayView.vue';
+import Header from './components/Header.vue';
 import { accessStore } from './store/store';
+import calls from './apicalls';
+import helpers from './helpers';
 
 export default defineComponent({
   name: 'App',
   components: {
     CalendarView,
     DayView,
+    Header,
   },
   setup() {
+    let { allData, appLoading, todaysData } = accessStore();
     const { isDayView } = accessStore();
+    console.log('mounting app')
 
-    return { isDayView };
+    onMounted(() => {
+      calls.allInfo().then((data) => {
+        allData.value = data;
+
+        const todaysDate = new Date().getDate();
+        todaysData.value = helpers.filterInfoByDay(allData.value, todaysDate);
+
+        console.log('app mounted');
+        appLoading = ref(false);
+      });
+    });
+
+    return { isDayView, appLoading, allData };
   },
 });
 </script>

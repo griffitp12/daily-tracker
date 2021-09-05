@@ -38,24 +38,29 @@
 import { defineComponent, ref } from 'vue';
 import { accessStore } from '../store/store';
 import calls from '../apicalls';
+import helpers from '../helpers';
 
 export default defineComponent({
   name: 'DayView',
   setup() {
-    const { selectedDate, isDayView } = accessStore();
-
-    async function getDailyData() {
-      await calls.getDataByDateInefficiently(selectedDate.value)
-    }
-
-    const dataObj = getDailyData()
-
-    console.log(dataObj);
-
+    console.log('mounting day view')
+    const { selectedDate, isDayView, allData } = accessStore();
     let pushups = ref(0);
     let situps = ref(0);
     let run = ref(false);
-    let alcohol = ref(false);
+    let alcohol = ref(false)
+
+    const selectedDateData = helpers.filterInfoByDay(
+      allData.value,
+      selectedDate.value
+    );
+
+    if (selectedDateData) {
+      pushups = ref(selectedDateData.pushups);
+      situps = ref(selectedDateData.situps);
+      run = ref(selectedDateData.run);
+      alcohol = ref(selectedDateData.alcohol);
+    }
 
     const buttonHandler = () => {
       isDayView.value = false;
