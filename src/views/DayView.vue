@@ -24,7 +24,7 @@
     /></label>
 
     <div class="button container">
-      <button @click="buttonHandler">
+      <button @click="toggleIsDayView">
         Return To Calendar
       </button>
       <button @click="updateLog">
@@ -43,14 +43,21 @@ import helpers from '../helpers';
 export default defineComponent({
   name: 'DayView',
   setup() {
-    console.log('mounting day view')
-    const { selectedDate, isDayView, allData } = accessStore();
+    console.log('mounting day view');
+    const {
+      selectedDate,
+      isDayView,
+      allData,
+      todaysData,
+      todaysDate,
+    } = accessStore();
     let pushups = ref(0);
     let situps = ref(0);
     let run = ref(false);
-    let alcohol = ref(false)
+    let alcohol = ref(false);
 
-    const selectedDateData = helpers.filterInfoByDay(
+    // eslint-disable-next-line no-undef
+    const selectedDateData: GraphQLDataObj = helpers.filterInfoByDay(
       allData.value,
       selectedDate.value
     );
@@ -62,20 +69,24 @@ export default defineComponent({
       alcohol = ref(selectedDateData.alcohol);
     }
 
-    const buttonHandler = () => {
+    const toggleIsDayView = () => {
       isDayView.value = false;
     };
 
-    const updateLog = (event: Event) => {
+    const updateLog = async (event: Event) => {
       event.preventDefault();
-      let data = {
+      // eslint-disable-next-line no-undef
+      let data: GraphQLDataObj = {
         date: selectedDate.value,
         pushups: pushups.value,
         situps: situps.value,
         run: run.value,
         alcohol: alcohol.value,
       };
-      calls.updateData(data);
+      await calls.updateData(data);
+      allData.value = await calls.allInfo();
+      todaysData.value = helpers.filterInfoByDay(allData.value, todaysDate);
+      toggleIsDayView();
     };
 
     if (selectedDate) {
@@ -83,7 +94,7 @@ export default defineComponent({
     }
 
     return {
-      buttonHandler,
+      toggleIsDayView,
       updateLog,
       pushups,
       situps,

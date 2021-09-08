@@ -1,17 +1,16 @@
 <template>
-  <div v-if="appLoading.value"></div>
-  <div v-else>
-    <Header />
-    <CalendarView v-if="!isDayView" />
-    <DayView v-else />
-  </div>
+  <suspense>
+    <template #default>
+      <AppWrapper />
+    </template>
+    <template #fallback>
+      <div>App is loading...</div>
+    </template>
+  </suspense>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, onMounted } from 'vue';
-import CalendarView from './views/CalendarView.vue';
-import DayView from './views/DayView.vue';
-import Header from './components/Header.vue';
+import { defineAsyncComponent, defineComponent, ref } from 'vue';
 import { accessStore } from './store/store';
 import calls from './apicalls';
 import helpers from './helpers';
@@ -19,28 +18,23 @@ import helpers from './helpers';
 export default defineComponent({
   name: 'App',
   components: {
-    CalendarView,
-    DayView,
-    Header,
+    AppWrapper: defineAsyncComponent(() => import('./views/AppWrapper.vue')),
   },
+
   setup() {
-    let { allData, appLoading, todaysData } = accessStore();
+    let { allData, appLoading, todaysData, todaysDate } = accessStore();
     const { isDayView } = accessStore();
-    console.log('mounting app')
 
-    onMounted(() => {
-      calls.allInfo().then((data) => {
-        allData.value = data;
+    (async () => {
+      const data = await calls.allInfo();
+      allData.value = data;
+      console.log('app fetched all data:', data);
+      todaysData.value = helpers.filterInfoByDay(data, todaysDate);
+      console.log('app fetched todays data:', todaysData.value);
+      appLoading = ref(false);
+    })();
 
-        const todaysDate = new Date().getDate();
-        todaysData.value = helpers.filterInfoByDay(allData.value, todaysDate);
-
-        console.log('app mounted');
-        appLoading = ref(false);
-      });
-    });
-
-    return { isDayView, appLoading, allData };
+    return { isDayView, appLoading, allData, todaysData };
   },
 });
 </script>

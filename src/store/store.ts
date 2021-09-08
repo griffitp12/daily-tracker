@@ -6,17 +6,19 @@ interface Reactives {
   appLoading: Ref<boolean>
   allData: Ref< [] | GraphQLDataObj[]>
   todaysData: Ref<GraphQLDataObj>
+  todaysDate: number
 }
 
 const selectedDate = ref(0);
 const isDayView = ref(false)
 const allData = ref([])
 const todaysData = ref({date: 0, pushups: 0, situps: 0, alcohol: false, run: false})
-const appLoading = ref(true)
+const appLoading = ref(false)
+const todaysDate = new Date().getDate()
 
 export function accessStore(): Reactives {
   return {
-    selectedDate, isDayView, allData, appLoading, todaysData
+    selectedDate, isDayView, allData, appLoading, todaysData, todaysDate
   };
 }
 

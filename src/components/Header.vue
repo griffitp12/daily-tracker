@@ -1,30 +1,30 @@
 <template>
   <div class="header">
     <p>
-      Today is September <span class="date">{{ date }}</span>
+      Today is September <span class="date">{{ todaysDate }}</span>
     </p>
-    <p>You have done {{ pushups }} pushups today and {{ situps }} situps.</p>
+    <p>You have done {{ pushups }} pushups and {{ situps }} situps today.</p>
   </div>
 </template>
 
 <script lang="ts">
 import { accessStore } from '@/store/store';
-import { defineComponent, ref } from 'vue';
+import { defineComponent, ref, Ref, watch } from 'vue';
 
 export default defineComponent({
   setup() {
-    console.log('mounting header');
-    const { todaysData } = accessStore();
-    let { appLoading } = accessStore();
-    const date = new Date().getDate();
-    let pushups;
-    let situps;
-    if (todaysData) {
-      pushups = ref(todaysData.value.pushups);
-      situps = ref(todaysData.value.situps);
-    }
+    let { todaysData, allData } = accessStore();
+    const todaysDate = new Date().getDate();
+    console.log('header mounting')
+    let pushups = ref(todaysData.value.pushups);
+    let situps = ref(todaysData.value.situps);
 
-    return { date, pushups, situps, appLoading };
+    watch(todaysData, (data, _) => {
+      todaysData.value = data;
+      pushups = ref(todaysData.value.pushups)
+    });
+
+    return { todaysDate, pushups, situps, allData, todaysData };
   },
 });
 </script>
