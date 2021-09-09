@@ -12,7 +12,6 @@ A simple app to track several categories of daily and/or weekly activities
       <td>Languages</td>
       <td>
         <img alt="TypeScript" src="https://img.shields.io/badge/-TypeScript-000?&logo=typescript" />
-        <img alt="JavaScript" src="https://img.shields.io/badge/-JavaScript-000?&logo=javascript" />
       </td>
     </tr>
     <tr>
