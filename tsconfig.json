@@ -29,13 +29,14 @@
   },
   "include": [
     "src/**/*.ts",
+    "utils/**/*.ts",
     "src/**/*.tsx",
     "src/**/*.vue",
     "tests/**/*.ts",
     "tests/**/*.tsx",
     "src/store/store.ts",
     "server/**/*.ts",
-    "types.d.ts"  ],
+    "types.d.ts", ],
   "exclude": [
     "node_modules"
   ]

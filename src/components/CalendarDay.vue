@@ -33,8 +33,8 @@
 <script lang="ts">
 import { defineComponent, ref, onMounted } from 'vue';
 import { accessStore } from '../store/store';
-import helpers from '../helpers';
-import styling from '../dynamicStyling';
+import helpers from '../../utils/helpers';
+import styling from '../../utils/dynamicStyling';
 
 export default defineComponent({
   name: 'CalendarDay',

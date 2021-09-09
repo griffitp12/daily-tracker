@@ -37,8 +37,8 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
 import { accessStore } from '../store/store';
-import calls from '../apicalls';
-import helpers from '../helpers';
+import calls from '../../utils/apicalls';
+import helpers from '../../utils/helpers';
 
 export default defineComponent({
   name: 'DayView',
