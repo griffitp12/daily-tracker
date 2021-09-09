@@ -4,7 +4,7 @@ A simple app to track several categories of daily and/or weekly activities
 <table align="center">
   <thead>
     <tr>
-      <th>Technologies</th>
+      <th rowspan="2">Technologies</th>
     </tr>
   </thead>
   <tbody>
