@@ -1,25 +1,22 @@
 <template>
-  <div>
-    <p>The date is September {{ selectedDate }}</p>
-  </div>
   <form action="" id="input-form">
     <label for="pushups-input">
-      <span>How many pushups have I done today?</span
+      <span>How many pushups did I do on {{currentMonth}} {{ selectedDate }}? </span
       ><input type="number" id="pushups-input" v-model="pushups"
     /></label>
 
     <label for="situps-input">
-      <span>How many situps have I done today?</span>
+      <span>How many situps did I do on {{currentMonth}} {{ selectedDate }}? </span>
       <input type="number" id="situps-input" v-model="situps"
     /></label>
 
     <label for="run-input">
-      <span>Did I run today?</span>
+      <span>Did I run on {{currentMonth}} {{ selectedDate }}? </span>
       <input type="checkbox" id="run-input" v-model="run"
     /></label>
 
     <label for="run-input">
-      <span>Did I drink today?</span>
+      <span>Did I drink on {{currentMonth}} {{ selectedDate }}? </span>
       <input type="checkbox" id="alcohol-input" v-model="alcohol"
     /></label>
 
@@ -40,16 +37,17 @@ import { accessStore } from '../store/store';
 import calls from '../../utils/apicalls';
 import helpers from '../../utils/helpers';
 
+
 export default defineComponent({
   name: 'DayView',
   setup() {
-    console.log('mounting day view');
     const {
       selectedDate,
       isDayView,
       allData,
       todaysData,
       todaysDate,
+      currentMonth,
     } = accessStore();
     let pushups = ref(0);
     let situps = ref(0);
@@ -101,6 +99,7 @@ export default defineComponent({
       run,
       alcohol,
       selectedDate,
+      currentMonth,
     };
   },
 });

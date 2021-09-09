@@ -2,7 +2,7 @@
   <div class="container">
     <table border="1" class="calendar">
       <tr>
-        <th colspan="7">September</th>
+        <th colspan="7">{{currentMonth}}</th>
       </tr>
       <tr>
         <th>Su</th>
@@ -67,6 +67,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import CalendarDay from '../components/CalendarDay.vue';
+import {accessStore} from '../store/store'
 
 export default defineComponent({
   name: 'CalendarView',
@@ -74,7 +75,8 @@ export default defineComponent({
     CalendarDay,
   },
   setup() {
-    return;
+    const {currentMonth} = accessStore()
+    return {currentMonth};
   },
 });
 </script>

@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <p>
-      Today is September <span class="date">{{ todaysDate }}</span>
+      Today is {{currentMonth}} <span class="date">{{ todaysDate }}</span>
     </p>
     <p>You have done {{ pushups }} pushups and {{ situps }} situps today.</p>
   </div>
@@ -13,7 +13,7 @@ import { defineComponent, ref, watch } from 'vue';
 
 export default defineComponent({
   setup() {
-    let { todaysData, allData } = accessStore();
+    let { todaysData, allData, currentMonth } = accessStore();
     const todaysDate = new Date().getDate();
     let pushups = ref(0);
     let situps = ref(0);
@@ -30,7 +30,7 @@ export default defineComponent({
       situps = ref(todaysData.value.situps);
     });
 
-    return { todaysDate, pushups, situps, allData, todaysData };
+    return { todaysDate, pushups, situps, allData, todaysData, currentMonth };
   },
 });
 </script>

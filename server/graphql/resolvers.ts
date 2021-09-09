@@ -1,11 +1,12 @@
 import db from '../knex/knex.js';
+import constants from '../../utils/constants.js'
 
 const resolvers = {
   Query: {
     allInfo: () => {
       return db
         .select('*')
-        .from('september')
+        .from(`${constants.currentMonth}`)
         .then((data: any) => {
           return data;
         });
@@ -14,7 +15,7 @@ const resolvers = {
     infoByDate: (parent: never, args: any): Promise<any[]> => {
       return db
         .select('*')
-        .from('september')
+        .from(`${constants.currentMonth}`)
         .where('date', args.date)
         .then((data: any) => {
           return data;
@@ -24,7 +25,7 @@ const resolvers = {
 
   Mutation: {
     addDate: (parent: never, args: any): Promise<string> => {
-      return db('september')
+      return db(`${constants.currentMonth}`)
         .insert({ date: args.date })
         .then(() => {
           return `September ${args.date}th added to DB!`;
@@ -34,7 +35,7 @@ const resolvers = {
     updateData: (parent: never, args: any): Promise<string> => {
       return db
         .select('*')
-        .from('september')
+        .from(`${constants.currentMonth}`)
         .where('date', args.date)
         .update({
           pushups: args.pushups,
