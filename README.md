@@ -18,29 +18,33 @@ The Header component also dynamically tracks situps and pushups for the current 
 
 ![Header Image](assets/Header.png)
 
-## Next Steps
+### Next Steps
 
-The next chunk I plan on accomplishing is creating a monthly data view, which will show tallied data. I also want to add the option to track run distance.
+- Create a MonthlyData view which tallies all input data and shows various metrics (pushups done this month, etc.)
+
+- Add ability to track run distance
+
+- Styling styling styling
 
 ## Instillation and setup instructions
 Fork, clone, and then
 
 - To install dependancies:
 
-`npm install`
+    `npm install`
 
 - To compile and set up the Vue SPA for hot-reloading:
 
-`npm run serve`
+    `npm run serve`
 
 
 - To compile and run the Node server:
 
-`npm run back`
+    `npm run back`
 
 - To set tsc to watch mode if you'd like to make changes to the back end in realtime:
 
-`tsc -w`
+    `tsc -w`
 
 
 At the moment, the app isn't set up to easily change the types of tracked data. However, if you would like to use it but want to set different situp and pushup goals, you can do that by altering the appropriate values in `utils/constants.ts`:
@@ -48,6 +52,8 @@ At the moment, the app isn't set up to easily change the types of tracked data. 
  ![Constants Image](assets/Constants.png)
 
 ## Reflection
+
+Stay tuned!
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
