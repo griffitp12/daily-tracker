@@ -1,6 +1,50 @@
 # Daily Tracker
 
 A simple app to track several categories of daily and/or weekly activities
+<table align="center">
+  <thead>
+    <tr>
+      <th>Skills</th>
+      <th>Technologies</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Languages</td>
+      <td>
+        <img alt="TypeScript" src="https://img.shields.io/badge/-TypeScript-000?&logo=typescript" />
+        <img alt="JavaScript" src="https://img.shields.io/badge/-JavaScript-000?&logo=javascript" />
+      </td>
+    </tr>
+    <tr>
+      <td>Front-End</td>
+      <td>
+        <img alt="Vue" src="https://img.shields.io/badge/-Vue-000?logo=vue.js" />
+        <img alt="HTML" src="https://img.shields.io/badge/-HTML-000?logo=html5" />
+        <img alt="CSS" src="https://img.shields.io/badge/-CSS-000?logo=css3" />
+      </td>
+    </tr>
+    <tr>
+      <td>Back-End</td>
+      <td>
+        <img alt="Express" src="https://img.shields.io/badge/-Express-000?logo=express" />
+        <img alt="Apollo Server" src="https://img.shields.io/badge/-Apollo%20Server-000?logo=apollo-graphql" />
+      </td>
+    </tr>
+    <tr>
+      <td>Testing</td>
+      <td>
+        Coming Soon
+      </td>
+    </tr>
+    <tr>
+      <td>Database</td>
+      <td>
+        <img alt="PostgreSQL" src="https://img.shields.io/badge/-PostgreSQL-000?logo=postgresql" />
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 ## Project Status
 
