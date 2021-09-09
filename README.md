@@ -25,30 +25,25 @@ The next chunk I plan on accomplishing is creating a monthly data view, which wi
 ## Instillation and setup instructions
 Fork, clone, and then:
 
-### to install dependancies:
+To install dependancies:
 
-```
-npm install
-```
-### to compile and set up the Vue SPA for hot-reloading:
+`npm install`
 
-```
-npm run serve
-```
+To compile and set up the Vue SPA for hot-reloading:
 
-### to compile and run the Node server:
-
-```
-npm run back
-```
-### to set tsc to watch mode if you'd like to make changes to the back end in realtime:
-
-```
-tsc -w
-```
+`npm run serve`
 
 
-At the moment, the app isn't set up to easily change the types of tracked data. However, if you would like to use it but want to set different situp and pushup goals, you can do that by altering the appropriate values in ```utils/constants.ts```:
+To compile and run the Node server:
+
+`npm run back`
+
+To set tsc to watch mode if you'd like to make changes to the back end in realtime:
+
+`tsc -w`
+
+
+At the moment, the app isn't set up to easily change the types of tracked data. However, if you would like to use it but want to set different situp and pushup goals, you can do that by altering the appropriate values in `utils/constants.ts`:
 
  ![Constants Image](assets/Constants.png)
 
