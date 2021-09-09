@@ -32,15 +32,15 @@ A simple app to track several categories of daily and/or weekly activities
       </td>
     </tr>
     <tr>
-      <td>Testing</td>
-      <td>
-        Coming Soon
-      </td>
-    </tr>
-    <tr>
       <td>Database</td>
       <td>
         <img alt="PostgreSQL" src="https://img.shields.io/badge/-PostgreSQL-000?logo=postgresql" />
+      </td>
+    </tr>
+    <tr>
+      <td>Testing</td>
+      <td>
+        Coming Soon
       </td>
     </tr>
   </tbody>
@@ -67,6 +67,8 @@ The Header component also dynamically tracks situps and pushups for the current 
 - Create a MonthlyData view which tallies all input data and shows various metrics (pushups done this month, etc.)
 
 - Add ability to track run distance
+
+- Add testing
 
 - Styling styling styling
 
