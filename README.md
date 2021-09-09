@@ -23,22 +23,22 @@ The Header component also dynamically tracks situps and pushups for the current 
 The next chunk I plan on accomplishing is creating a monthly data view, which will show tallied data. I also want to add the option to track run distance.
 
 ## Instillation and setup instructions
-Fork, clone, and then:
+Fork, clone, and then
 
-To install dependancies:
+- To install dependancies:
 
 `npm install`
 
-To compile and set up the Vue SPA for hot-reloading:
+- To compile and set up the Vue SPA for hot-reloading:
 
 `npm run serve`
 
 
-To compile and run the Node server:
+- To compile and run the Node server:
 
 `npm run back`
 
-To set tsc to watch mode if you'd like to make changes to the back end in realtime:
+- To set tsc to watch mode if you'd like to make changes to the back end in realtime:
 
 `tsc -w`
 

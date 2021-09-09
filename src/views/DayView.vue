@@ -25,7 +25,7 @@
         Return To Calendar
       </button>
       <button @click="updateLog">
-        Update Today's Log
+        Update {{currentMonth}} {{selectedDate}} Log
       </button>
     </div>
   </form>
