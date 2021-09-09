@@ -29,6 +29,7 @@ A simple app to track several categories of daily and/or weekly activities
         <img alt="Express" src="https://img.shields.io/badge/-Express-000?logo=express" />
          <img alt="Graphql" src="https://img.shields.io/badge/-GraphQL-000?logo=graphql" />
         <img alt="Apollo Server" src="https://img.shields.io/badge/-Apollo%20Server-000?logo=apollo-graphql" />
+         <img alt="Knex" src="https://img.shields.io/badge/-Knex-000?logo=knex" />
       </td>
     </tr>
     <tr>
