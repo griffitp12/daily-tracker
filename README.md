@@ -4,7 +4,6 @@ A simple app to track several categories of daily and/or weekly activities
 <table align="center">
   <thead>
     <tr>
-      <th>Skills</th>
       <th>Technologies</th>
     </tr>
   </thead>
@@ -19,7 +18,7 @@ A simple app to track several categories of daily and/or weekly activities
     <tr>
       <td>Front-End</td>
       <td>
-        <img alt="Vue" src="https://img.shields.io/badge/-Vue-000?logo=vue.js" />
+        <img alt="Vue 3.0" src="https://img.shields.io/badge/-Vue-000?logo=vue.js" />
         <img alt="HTML" src="https://img.shields.io/badge/-HTML-000?logo=html5" />
         <img alt="CSS" src="https://img.shields.io/badge/-CSS-000?logo=css3" />
       </td>
@@ -28,6 +27,7 @@ A simple app to track several categories of daily and/or weekly activities
       <td>Back-End</td>
       <td>
         <img alt="Express" src="https://img.shields.io/badge/-Express-000?logo=express" />
+         <img alt="Graphql" src="https://img.shields.io/badge/-GraphQL-000?logo=graphql" />
         <img alt="Apollo Server" src="https://img.shields.io/badge/-Apollo%20Server-000?logo=apollo-graphql" />
       </td>
     </tr>
