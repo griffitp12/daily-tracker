@@ -1,12 +1,6 @@
 import devConfig from '../../knexfile.js';
 import Knex  from 'knex';
 
-const environment = process.env.ENVIRONMENT || 'development';
-
-/* let knexConfig: Knex.Config<any>
-
-if (environment === 'development') {
-  knexConfig = devConfig
-} */
+// this will have to get more involved if I want to switch between multiple configs
 
 export default Knex(devConfig);
