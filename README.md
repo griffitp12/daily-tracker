@@ -18,7 +18,7 @@ A simple app to track several categories of daily and/or weekly activities
     <tr>
       <td>Front-End</td>
       <td>
-        <img alt="Vue 3.0" src="https://img.shields.io/badge/-Vue-000?logo=vue.js" />
+        <img alt="Vue" src="https://img.shields.io/badge/-Vue%203.0-000?logo=vue.js" />
         <img alt="HTML" src="https://img.shields.io/badge/-HTML-000?logo=html5" />
         <img alt="CSS" src="https://img.shields.io/badge/-CSS-000?logo=css3" />
       </td>
