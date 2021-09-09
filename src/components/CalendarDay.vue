@@ -1,21 +1,31 @@
 <template>
-  <div v-if="!isFuture && date" @click="handleClickedDate" class="grid-container">
-    <div class="UL grid-cell" @mouseover="hover = true">
+  <div v-if="!isUntracked && date" class="grid-container">
+    <div
+      class="UL grid-cell"
+      :style="{ backgroundColor: dynamicStyles.pushupsBG }"
+    >
       <p v-if="pushups" class="grid-data">{{ pushups }}</p>
-      <span v-if="hover">This is a secret message.</span>
     </div>
-    <div class="UR grid-cell">
+    <div
+      class="UR grid-cell"
+      :style="{ backgroundColor: dynamicStyles.situpsBG }"
+    >
       <p v-if="situps" class="grid-data">{{ situps }}</p>
     </div>
-    
-    <div class="LL grid-cell">
+    <div class="date" @click="handleClickedDate">
+      {{ date }}
+    </div>
+    <div class="LL grid-cell" :style="{ backgroundColor: dynamicStyles.runBG }">
       <span v-if="didRun" class="grid-data">🏃</span>
     </div>
-    <div class="LR grid-cell">
+    <div
+      class="LR grid-cell"
+      :style="{ backgroundColor: dynamicStyles.alcoholBG }"
+    >
       <span v-if="didDrink" class="grid-data">🍺</span>
     </div>
   </div>
-  <div v-else class="future">
+  <div v-else class="untracked">
     <p v-if="date">{{ date }}</p>
   </div>
 </template>
@@ -24,66 +34,85 @@
 import { defineComponent, ref, onMounted } from 'vue';
 import { accessStore } from '../store/store';
 import helpers from '../helpers';
+import styling from '../dynamicStyling';
 
 export default defineComponent({
   name: 'CalendarDay',
   props: {
-    date: String,
+    date: Number,
   },
 
   setup(props) {
-    let isFuture = ref(false);
-    const { selectedDate, isDayView, allData } = accessStore();
-    // eslint-disable-next-line no-undef
+    let isUntracked = ref(false);
+    const {
+      selectedDate,
+      isDayView,
+      allData,
+      monthlyShabbosDates,
+    } = accessStore();
 
-    let numDate = 0;
-    let didRun;
-    let didDrink;
-    let pushups;
-    let situps; 
-    let hover = ref(false)
+    let didRun = false;
+    let didDrink = false;
+    let pushups = 0;
+    let situps = 0;
+    // eslint-disable-next-line no-undef
+    let dataByDate: GraphQLDataObj | undefined;
+
+    let dynamicStyles = {
+      situpsBG: 'none',
+      pushupsBG: 'none',
+      runBG: 'none',
+      alcoholBG: 'none',
+    };
 
     if (props.date) {
-      numDate = parseInt(props.date);
+      dataByDate = helpers.filterInfoByDay(allData.value, props.date);
     }
 
-    const checkIfFuture = (): void => {
+    if (dataByDate) {
+      didRun = dataByDate.run;
+      // dynamicStyles.runBG = styling.setStyleBoolean(didRun, 'run');
+      didDrink = dataByDate.alcohol;
+      // dynamicStyles.alcoholBG = styling.setStyleBoolean(didDrink, 'alcohol');
+      pushups = dataByDate.pushups;
+      dynamicStyles.pushupsBG = `rgba(64,143,64,${styling.setStyleRatioCountable(
+        pushups,
+        'pushups'
+      )}`;
+      situps = dataByDate.situps;
+      dynamicStyles.situpsBG = `rgba(64,143,64,${styling.setStyleRatioCountable(
+        situps,
+        'situps'
+      )}`;
+    }
+
+    const checkIfUntracked = (): void => {
       if (!props.date) {
         return;
       }
-      let numDate = parseInt(props.date);
       const todaysDate = new Date().getDate();
-      if (numDate > todaysDate) {
-        isFuture.value = true;
+      if (props.date > todaysDate || monthlyShabbosDates.includes(props.date)) {
+        isUntracked.value = true;
       }
     };
 
     const handleClickedDate = () => {
-      if (numDate) {
-        selectedDate.value = numDate;
+      if (props.date) {
+        selectedDate.value = props.date;
         isDayView.value = true;
       }
     };
 
-    let dataByDate = helpers.filterInfoByDay(allData.value, numDate);
-    if (dataByDate) {
-      didRun = dataByDate.run;
-      didDrink = dataByDate.alcohol;
-      pushups = dataByDate.pushups;
-      situps = dataByDate.situps;
-    }
-
-    onMounted(checkIfFuture);
+    onMounted(checkIfUntracked);
 
     return {
-      isFuture,
+      isUntracked,
       handleClickedDate,
-      dataByDate,
       didRun,
       didDrink,
       pushups,
       situps,
-      hover,
+      dynamicStyles,
     };
   },
 });
@@ -92,7 +121,7 @@ export default defineComponent({
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .grid-container {
-  cursor: pointer;
+  
   display: grid;
   grid-template-columns: 50% 50%;
   grid-auto-rows: 50% 50%;
@@ -103,35 +132,55 @@ export default defineComponent({
 .UL {
   grid-column: 1;
   grid-row: 1;
+  align-items: flex-start;
+  justify-content: flex-start;
 }
 .UR {
   grid-column: 2;
-  grid-row: 1
+  grid-row: 1;
+  align-items: flex-start;
+  justify-content: flex-end;
 }
 .LL {
   grid-column: 1;
   grid-row: 2;
+  align-items: flex-end;
+  justify-content: flex-start;
 }
 .LR {
   grid-column: 2;
   grid-row: 2;
+  align-items: flex-end;
+  justify-content: flex-end;
 }
 .grid-data {
-  margin: 0 auto;
+  margin: 5px;
+  font-weight: 200;
 }
 .grid-cell {
   border: 1px solid black;
   display: flex;
-  align-items: center;
 }
-.future {
+.date {
+  position: absolute;
+  display: inline-block;
+  cursor: pointer;
+  margin: auto;
+  border-radius: 50%;
+  width: 20px;
+  line-height: 20px;
+  padding: 10px;
+  background: #fff;
+  border: 3px solid #000;
+  color: #000;
+  text-align: center;
+  display: flex;
+}
+.untracked {
   background-color: gray;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-.stat-text {
-  font-weight: 200;
 }
 </style>

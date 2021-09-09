@@ -15,17 +15,19 @@ export default defineComponent({
   setup() {
     let { todaysData, allData } = accessStore();
     const todaysDate = new Date().getDate();
-    console.log('header mounting');
     let pushups = ref(0);
     let situps = ref(0);
     if (todaysData.value) {
-      pushups = ref(todaysData.value.pushups);
-      situps = ref(todaysData.value.situps);
+      if (todaysData.value.pushups) {
+        pushups = ref(todaysData.value.pushups);
+        situps = ref(todaysData.value.situps);
+      }
     }
 
     watch(todaysData, (data, _) => {
       todaysData.value = data;
       pushups = ref(todaysData.value.pushups);
+      situps = ref(todaysData.value.situps);
     });
 
     return { todaysDate, pushups, situps, allData, todaysData };

@@ -28,9 +28,7 @@ export default defineComponent({
     (async () => {
       const data = await calls.allInfo();
       allData.value = data;
-      console.log('app fetched all data:', data);
       todaysData.value = helpers.filterInfoByDay(data, todaysDate);
-      console.log('app fetched todays data:', todaysData.value);
       appLoading = ref(false);
     })();
 

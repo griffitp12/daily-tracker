@@ -18,45 +18,45 @@
         <th><CalendarDay /></th>
         <th><CalendarDay /></th>
         <th>
-          <CalendarDay date="1" />
+          <CalendarDay :date="1" />
         </th>
-        <th><CalendarDay date="2" /></th>
-        <th><CalendarDay date="3" /></th>
-        <th><CalendarDay date="4" /></th>
+        <th><CalendarDay :date="2" /></th>
+        <th><CalendarDay :date="3" /></th>
+        <th><CalendarDay :date="4" /></th>
       </tr>
       <tr>
-        <th><CalendarDay date="5" /></th>
-        <th><CalendarDay date="6" /></th>
-        <th><CalendarDay date="7" /></th>
-        <th><CalendarDay date="8" /></th>
-        <th><CalendarDay date="9" /></th>
-        <th><CalendarDay date="10" /></th>
-        <th><CalendarDay date="11" /></th>
+        <th><CalendarDay :date="5" /></th>
+        <th><CalendarDay :date="6" /></th>
+        <th><CalendarDay :date="7" /></th>
+        <th><CalendarDay :date="8" /></th>
+        <th><CalendarDay :date="9" /></th>
+        <th><CalendarDay :date="10" /></th>
+        <th><CalendarDay :date="11" /></th>
       </tr>
       <tr>
-        <th><CalendarDay date="12" /></th>
-        <th><CalendarDay date="13" /></th>
-        <th><CalendarDay date="14" /></th>
-        <th><CalendarDay date="15" /></th>
-        <th><CalendarDay date="16" /></th>
-        <th><CalendarDay date="17" /></th>
-        <th><CalendarDay date="18" /></th>
+        <th><CalendarDay :date="12" /></th>
+        <th><CalendarDay :date="13" /></th>
+        <th><CalendarDay :date="14" /></th>
+        <th><CalendarDay :date="15" /></th>
+        <th><CalendarDay :date="16" /></th>
+        <th><CalendarDay :date="17" /></th>
+        <th><CalendarDay :date="18" /></th>
       </tr>
       <tr>
-        <th><CalendarDay date="19" /></th>
-        <th><CalendarDay date="20" /></th>
-        <th><CalendarDay date="21" /></th>
-        <th><CalendarDay date="22" /></th>
-        <th><CalendarDay date="23" /></th>
-        <th><CalendarDay date="24" /></th>
-        <th><CalendarDay date="25" /></th>
+        <th><CalendarDay :date="19" /></th>
+        <th><CalendarDay :date="20" /></th>
+        <th><CalendarDay :date="21" /></th>
+        <th><CalendarDay :date="22" /></th>
+        <th><CalendarDay :date="23" /></th>
+        <th><CalendarDay :date="24" /></th>
+        <th><CalendarDay :date="25" /></th>
       </tr>
       <tr>
-        <th><CalendarDay date="26" /></th>
-        <th><CalendarDay date="27" /></th>
-        <th><CalendarDay date="28" /></th>
-        <th><CalendarDay date="29" /></th>
-        <th><CalendarDay date="30" /></th>
+        <th><CalendarDay :date="26" /></th>
+        <th><CalendarDay :date="27" /></th>
+        <th><CalendarDay :date="28" /></th>
+        <th><CalendarDay :date="29" /></th>
+        <th><CalendarDay :date="30" /></th>
         <th><CalendarDay /></th>
         <th><CalendarDay /></th>
       </tr>
