@@ -28,23 +28,27 @@ Fork, clone, and then:
 ```
 npm install
 ```
+to install dependancies; 
 
-### Compiles and hot-reloads Vue SPA for development
 ```
 npm run serve
 ```
+to compile and set up the Vue SPA for hot-reloading;
 
-### Compiles the back-end for development
+
 ```
 npm run back
 ```
+to compile and run the Node server;
 
-### Sets tsc to watch mode for back-end development
 ```
 tsc -w
 ```
+to set tsc to watch mode if you'd like to make changes to the back end in realtime.
 
 At the moment, the app isn't set up to easily change the types of tracked data. However, if you would like to use it but want to set different situp and pushup goals, you can do that by altering the appropriate values in ```utils/constants.ts``` 
+
+## Reflection
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
