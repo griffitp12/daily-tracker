@@ -1,4 +1,6 @@
-export function up(knex) {
+import { Knex } from 'knex';
+
+export function up(knex: Knex): Knex.SchemaBuilder {
   return knex.schema.createTable('september', (table) => {
     table
       .integer('date')
@@ -12,6 +14,6 @@ export function up(knex) {
   });
 }
 
-export function down(knex) {
+export function down(knex: Knex): Knex.SchemaBuilder {
   return knex.schema.dropTableIfExists('september');
 }
