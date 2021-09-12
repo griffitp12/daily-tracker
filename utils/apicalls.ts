@@ -20,7 +20,7 @@ export default {
         }
       });
     } catch (err) {
-      throw new Error(err);
+      throw new Error(err as string);
     }
   },
 
@@ -39,7 +39,7 @@ export default {
         console.log(data.data.data.updateData);
       });
     } catch (err) {
-      throw new Error(err);
+      throw new Error(err as string);
     }
   },
 
@@ -60,6 +60,8 @@ export default {
             }`,
       },
     }).then((data) => {
+      // chain .then to check for each data object. Maybe if axios has a way to make this cleaner?
+      console.log(data) 
       const allInfo = data.data.data.allInfo
       return allInfo
     });

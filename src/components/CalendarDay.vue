@@ -174,11 +174,11 @@ export default defineComponent({
   border: 3px solid #000;
   color: #000;
   text-align: center;
-  display: flex;
 }
 .untracked {
   background-color: gray;
   height: 100%;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
