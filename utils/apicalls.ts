@@ -61,7 +61,6 @@ export default {
       },
     }).then((data) => {
       // chain .then to check for each data object. Maybe if axios has a way to make this cleaner?
-      console.log(data) 
       const allInfo = data.data.data.allInfo
       return allInfo
     });

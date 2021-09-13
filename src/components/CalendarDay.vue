@@ -70,7 +70,6 @@ export default defineComponent({
     }
 
     if (dataByDate) {
-      console.log('DataByDate:', dataByDate);
       didRun = dataByDate.run;
       // dynamicStyles.runBG = styling.setStyleBoolean(didRun, 'run');
       didDrink = dataByDate.alcohol;
