@@ -4,13 +4,13 @@
       class="UL grid-cell"
       :style="{ backgroundColor: dynamicStyles.pushupsBG }"
     >
-      <p v-if="pushups" class="grid-data">{{ pushups }}</p>
+      <p class="grid-data">{{ pushups }}</p>
     </div>
     <div
       class="UR grid-cell"
       :style="{ backgroundColor: dynamicStyles.situpsBG }"
     >
-      <p v-if="situps" class="grid-data">{{ situps }}</p>
+      <p class="grid-data">{{ situps }}</p>
     </div>
     <div class="date" @click="handleClickedDate">
       {{ date }}
@@ -70,6 +70,7 @@ export default defineComponent({
     }
 
     if (dataByDate) {
+      console.log('DataByDate:', dataByDate);
       didRun = dataByDate.run;
       // dynamicStyles.runBG = styling.setStyleBoolean(didRun, 'run');
       didDrink = dataByDate.alcohol;
@@ -121,7 +122,6 @@ export default defineComponent({
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .grid-container {
-  
   display: grid;
   grid-template-columns: 50% 50%;
   grid-auto-rows: 50% 50%;

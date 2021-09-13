@@ -18,7 +18,7 @@ async function setupServer() {
 }
 
 
-console.log('setting up');
+console.log('setting up server');
 setupServer();
 
 app.listen(port, () => {

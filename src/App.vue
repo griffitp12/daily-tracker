@@ -1,16 +1,16 @@
 <template>
-  <suspense>
-    <template #default>
-      <AppWrapper />
-    </template>
-    <template #fallback>
-      <div>App is loading...</div>
-    </template>
-  </suspense>
+  <div v-if="appLoading">
+    <div>App is loading...</div>
+  </div>
+  <div v-else>
+    <Header />
+    <DayView v-if="isDayView" />
+    <CalendarView v-else />
+  </div>
 </template>
 
 <script lang="ts">
-import { defineAsyncComponent, defineComponent, ref } from 'vue';
+import { defineComponent, defineAsyncComponent, ref } from 'vue';
 import { accessStore } from './store/store';
 import calls from '../utils/apicalls';
 import helpers from '../utils/helpers';
@@ -18,7 +18,11 @@ import helpers from '../utils/helpers';
 export default defineComponent({
   name: 'App',
   components: {
-    AppWrapper: defineAsyncComponent(() => import('./views/AppWrapper.vue')),
+    CalendarView: defineAsyncComponent(() =>
+      import('./views/CalendarView.vue')
+    ),
+    DayView: defineAsyncComponent(() => import('./views/DayView.vue')),
+    Header: defineAsyncComponent(() => import('./components/Header.vue')),
   },
 
   setup() {

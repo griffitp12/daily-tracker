@@ -52,15 +52,15 @@ Currenty the app is setup to track four categories of daily activities: daily pu
 
 It presents daily data in a couple of ways: the CalendarView view renders a CalendarDay component for each day in the calendar. For each individual CalendarDay, the four data are shown in quadrants. The Pushup and Situp quadrants dynamically change background color based on how close to my rep goal I've gotten to on the day, as well as showing the rep number. The run and alcohol quadrants display an icon depending on if I've run or consumed alcohol, respectively:
 
-![CalendarView Image](assets/CalendarView.png)
+![CalendarView Image](src/assets/CalendarView.png)
 
 When a date is clicked, the DayView view shows a simple form for taking in new data, which has already input data bound to the input placeholders. From this form you can either return to the calendar view without submitting, or submit and return to the calendar view:
 
-![DayView Image](assets/DayView.png)
+![DayView Image](src/assets/DayView.png)
 
 The Header component also dynamically tracks situps and pushups for the current day:
 
-![Header Image](assets/Header.png)
+![Header Image](src/assets/Header.png)
 
 ### Next Steps
 
@@ -95,7 +95,7 @@ Fork, clone, and then
 
 At the moment, the app isn't set up to easily change the types of tracked data. However, if you would like to use it but want to set different situp and pushup goals, you can do that by altering the appropriate values in `utils/constants.ts`:
 
- ![Constants Image](assets/Constants.png)
+ ![Constants Image](src/assets/Constants.png)
 
 ## Reflection
 
