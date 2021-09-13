@@ -11,7 +11,7 @@ const devConfig: Knex.Config = {
     },
     migrations: {
       tableName: 'migrations',
-      directory: './server/knex/migrations',
+      directory: './dist/server/knex/migrations',
     },
     seeds: {
       directory: './data',
