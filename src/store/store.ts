@@ -8,7 +8,7 @@ interface StoreContents {
   allData: Ref< [] | GraphQLDataObj[]>
   todaysData: Ref<GraphQLDataObj>
   todaysDate: number
-  monthlyShabbosDates: number[]
+  monthlyUntrackedDates: number[]
   currentMonth: string
 }
 
@@ -18,12 +18,12 @@ const allData = ref([])
 const todaysData = ref({date: 0, pushups: 0, situps: 0, alcohol: false, run: false})
 const appLoading = ref(false)
 const todaysDate = new Date().getDate()
-const monthlyShabbosDates = [4, 11, 18, 25]
+const monthlyUntrackedDates = [4, 11, 16, 18, 25]
 const currentMonth = constants.currentMonth
 
 export function accessStore(): StoreContents {
   return {
-    selectedDate, isDayView, allData, appLoading, todaysData, todaysDate, monthlyShabbosDates, currentMonth
+    selectedDate, isDayView, allData, appLoading, todaysData, todaysDate, monthlyUntrackedDates, currentMonth
   };
 }
 

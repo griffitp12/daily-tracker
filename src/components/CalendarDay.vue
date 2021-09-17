@@ -48,7 +48,7 @@ export default defineComponent({
       selectedDate,
       isDayView,
       allData,
-      monthlyShabbosDates,
+      monthlyUntrackedDates,
     } = accessStore();
 
     let didRun = false;
@@ -91,7 +91,7 @@ export default defineComponent({
         return;
       }
       const todaysDate = new Date().getDate();
-      if (props.date > todaysDate || monthlyShabbosDates.includes(props.date)) {
+      if (props.date > todaysDate || monthlyUntrackedDates.includes(props.date)) {
         isUntracked.value = true;
       }
     };
